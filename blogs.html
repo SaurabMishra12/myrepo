@@ -1,0 +1,171 @@
+import React, { useState } from 'react';
+import { Search, Code, Home, ArrowRight, ChevronLeft } from 'lucide-react';
+
+const CodexBlog = () => {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedBlog, setSelectedBlog] = useState(null);
+
+  const blogs = [
+    {
+      id: 1,
+      title: "Building Scalable Applications with Microservices",
+      excerpt: "Learn how to architect robust applications using microservices architecture and handle distributed systems effectively. We'll cover key concepts, best practices, and real-world implementation strategies.",
+      content: "Full article content about microservices architecture...",
+      author: "Sarah Chen",
+      date: "Apr 2, 2024",
+      category: "Architecture",
+      readTime: "8 min read"
+    },
+    {
+      id: 2,
+      title: "Advanced Python Design Patterns",
+      excerpt: "Discover how to implement common design patterns in Python to write cleaner, more maintainable code. From Factory Method to Observer Pattern, master the art of elegant Python programming.",
+      content: "Full article content about Python design patterns...",
+      author: "Michael Ross",
+      date: "Apr 1, 2024",
+      category: "Python",
+      readTime: "12 min read"
+    },
+    {
+      id: 3,
+      title: "Machine Learning for Developers",
+      excerpt: "A practical guide to implementing ML algorithms in your applications. Learn how to integrate machine learning models into your development workflow and create intelligent features.",
+      content: "Full article content about machine learning...",
+      author: "David Kumar",
+      date: "Mar 30, 2024",
+      category: "AI/ML",
+      readTime: "15 min read"
+    },
+    {
+      id: 4,
+      title: "Web Performance Optimization Techniques",
+      excerpt: "Master the art of creating lightning-fast web applications. Learn about code splitting, lazy loading, and other crucial optimization strategies.",
+      content: "Full article content about web performance...",
+      author: "Lisa Wang",
+      date: "Mar 28, 2024",
+      category: "Web Development",
+      readTime: "10 min read"
+    }
+  ];
+
+  const filteredBlogs = blogs.filter(blog =>
+    blog.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    blog.content.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    blog.category.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const BlogList = () => (
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="mb-8">
+        <div className="relative">
+          <input
+            type="text"
+            placeholder="Search blogs..."
+            className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+          <Search className="absolute right-3 top-2.5 text-gray-400" />
+        </div>
+      </div>
+
+      <div className="space-y-8">
+        {filteredBlogs.map((blog) => (
+          <div 
+            key={blog.id}
+            className="bg-white rounded-lg shadow-sm p-6 cursor-pointer hover:shadow-md transition-shadow"
+            onClick={() => setSelectedBlog(blog)}
+          >
+            <div className="flex justify-between items-start">
+              <div>
+                <span className="text-sm text-blue-600 font-medium">{blog.category}</span>
+                <h2 className="mt-2 text-xl font-semibold text-gray-900">{blog.title}</h2>
+                <p className="mt-3 text-gray-600">{blog.excerpt}</p>
+              </div>
+              <ArrowRight className="h-5 w-5 text-blue-600 mt-2" />
+            </div>
+            <div className="mt-4 flex items-center text-sm text-gray-500">
+              <span>{blog.author}</span>
+              <span className="mx-2">•</span>
+              <span>{blog.date}</span>
+              <span className="mx-2">•</span>
+              <span>{blog.readTime}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+
+  const BlogPost = ({ blog }) => (
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <button 
+        onClick={() => setSelectedBlog(null)}
+        className="flex items-center text-blue-600 hover:text-blue-800 mb-6"
+      >
+        <ChevronLeft className="h-5 w-5 mr-1" />
+        Back to blogs
+      </button>
+      
+      <article className="bg-white rounded-lg shadow-sm p-8">
+        <span className="text-sm text-blue-600 font-medium">{blog.category}</span>
+        <h1 className="mt-2 text-3xl font-bold text-gray-900">{blog.title}</h1>
+        
+        <div className="mt-4 flex items-center text-sm text-gray-500">
+          <span>{blog.author}</span>
+          <span className="mx-2">•</span>
+          <span>{blog.date}</span>
+          <span className="mx-2">•</span>
+          <span>{blog.readTime}</span>
+        </div>
+
+        <div className="mt-8 prose prose-blue max-w-none">
+          <p>{blog.content}</p>
+        </div>
+      </article>
+    </div>
+  );
+
+  return (
+    <div className="min-h-screen bg-gray-50">
+      {/* Navigation */}
+      <nav className="bg-white shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between h-16 items-center">
+            <div className="flex items-center space-x-4">
+              <a 
+                href="xyz.com" 
+                className="flex items-center text-gray-700 hover:text-blue-600"
+              >
+                <Home className="h-5 w-5" />
+                <span className="ml-2">Home</span>
+              </a>
+              <div className="flex items-center">
+                <Code className="h-6 w-6 text-blue-600" />
+                <span className="ml-2 text-xl font-bold text-gray-900">Codex Blog</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {/* Main Content */}
+      <main>
+        {selectedBlog ? (
+          <BlogPost blog={selectedBlog} />
+        ) : (
+          <BlogList />
+        )}
+      </main>
+
+      {/* Footer */}
+      <footer className="bg-white border-t mt-12 py-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <p className="text-center text-gray-500">© 2024 Codex Blog. All rights reserved.</p>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+export default CodexBlog;
