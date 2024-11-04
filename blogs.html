@@ -1,171 +1,164 @@
-import React, { useState } from 'react';
-import { Search, Code, Home, ArrowRight, ChevronLeft } from 'lucide-react';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechWave - Futuristic Blog</title>
+    <style>
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-const CodexBlog = () => {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedBlog, setSelectedBlog] = useState(null);
+        /* Body Styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #e0e0e0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-  const blogs = [
-    {
-      id: 1,
-      title: "Building Scalable Applications with Microservices",
-      excerpt: "Learn how to architect robust applications using microservices architecture and handle distributed systems effectively. We'll cover key concepts, best practices, and real-world implementation strategies.",
-      content: "Full article content about microservices architecture...",
-      author: "Sarah Chen",
-      date: "Apr 2, 2024",
-      category: "Architecture",
-      readTime: "8 min read"
-    },
-    {
-      id: 2,
-      title: "Advanced Python Design Patterns",
-      excerpt: "Discover how to implement common design patterns in Python to write cleaner, more maintainable code. From Factory Method to Observer Pattern, master the art of elegant Python programming.",
-      content: "Full article content about Python design patterns...",
-      author: "Michael Ross",
-      date: "Apr 1, 2024",
-      category: "Python",
-      readTime: "12 min read"
-    },
-    {
-      id: 3,
-      title: "Machine Learning for Developers",
-      excerpt: "A practical guide to implementing ML algorithms in your applications. Learn how to integrate machine learning models into your development workflow and create intelligent features.",
-      content: "Full article content about machine learning...",
-      author: "David Kumar",
-      date: "Mar 30, 2024",
-      category: "AI/ML",
-      readTime: "15 min read"
-    },
-    {
-      id: 4,
-      title: "Web Performance Optimization Techniques",
-      excerpt: "Master the art of creating lightning-fast web applications. Learn about code splitting, lazy loading, and other crucial optimization strategies.",
-      content: "Full article content about web performance...",
-      author: "Lisa Wang",
-      date: "Mar 28, 2024",
-      category: "Web Development",
-      readTime: "10 min read"
-    }
-  ];
+        /* Header */
+        .header {
+            text-align: center;
+            margin: 20px 0;
+            color: #03DAC5;
+            animation: pulse 2s infinite alternate;
+        }
+        .header h1 {
+            font-size: 2.5em;
+            letter-spacing: 2px;
+            font-weight: bold;
+        }
+        .header p {
+            color: #BB86FC;
+        }
 
-  const filteredBlogs = blogs.filter(blog =>
-    blog.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    blog.content.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    blog.category.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+        /* Navigation Bar */
+        .navbar {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .navbar a {
+            color: #03DAC5;
+            text-decoration: none;
+            font-size: 1.2em;
+            transition: color 0.3s ease;
+        }
+        .navbar a:hover {
+            color: #BB86FC;
+        }
 
-  const BlogList = () => (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <div className="mb-8">
-        <div className="relative">
-          <input
-            type="text"
-            placeholder="Search blogs..."
-            className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
-          <Search className="absolute right-3 top-2.5 text-gray-400" />
+        /* Blog Section */
+        .blog-section {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 90%;
+            max-width: 800px;
+        }
+        .blog-post {
+            background-color: #1f1f1f;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .blog-post:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+        }
+        .blog-post h2 {
+            color: #03DAC5;
+            margin-bottom: 10px;
+        }
+        .blog-post p {
+            color: #b0b0b0;
+            font-size: 0.9em;
+            line-height: 1.5em;
+        }
+        .blog-post button {
+            background-color: #BB86FC;
+            color: #121212;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+        }
+        .blog-post button:hover {
+            background-color: #03DAC5;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 40px;
+            color: #808080;
+            text-align: center;
+            font-size: 0.9em;
+        }
+
+        /* Animation */
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 10px #BB86FC, 0 0 20px #03DAC5;
+            }
+            50% {
+                box-shadow: 0 0 20px #BB86FC, 0 0 40px #03DAC5;
+            }
+            100% {
+                box-shadow: 0 0 10px #BB86FC, 0 0 20px #03DAC5;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <h1>TechWave</h1>
+        <p>Your Portal to Future Tech Insights</p>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <a href="index.html">Home</a>
+    </nav>
+
+    <!-- Blog Section -->
+    <section class="blog-section" id="blogs">
+        <div class="blog-post">
+            <h2>The Rise of Artificial Intelligence</h2>
+            <p>Explore how AI is transforming industries and what the future holds for intelligent systems.</p>
+            <button onclick="showMore('blog1')">Read More</button>
         </div>
-      </div>
-
-      <div className="space-y-8">
-        {filteredBlogs.map((blog) => (
-          <div 
-            key={blog.id}
-            className="bg-white rounded-lg shadow-sm p-6 cursor-pointer hover:shadow-md transition-shadow"
-            onClick={() => setSelectedBlog(blog)}
-          >
-            <div className="flex justify-between items-start">
-              <div>
-                <span className="text-sm text-blue-600 font-medium">{blog.category}</span>
-                <h2 className="mt-2 text-xl font-semibold text-gray-900">{blog.title}</h2>
-                <p className="mt-3 text-gray-600">{blog.excerpt}</p>
-              </div>
-              <ArrowRight className="h-5 w-5 text-blue-600 mt-2" />
-            </div>
-            <div className="mt-4 flex items-center text-sm text-gray-500">
-              <span>{blog.author}</span>
-              <span className="mx-2">•</span>
-              <span>{blog.date}</span>
-              <span className="mx-2">•</span>
-              <span>{blog.readTime}</span>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-
-  const BlogPost = ({ blog }) => (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <button 
-        onClick={() => setSelectedBlog(null)}
-        className="flex items-center text-blue-600 hover:text-blue-800 mb-6"
-      >
-        <ChevronLeft className="h-5 w-5 mr-1" />
-        Back to blogs
-      </button>
-      
-      <article className="bg-white rounded-lg shadow-sm p-8">
-        <span className="text-sm text-blue-600 font-medium">{blog.category}</span>
-        <h1 className="mt-2 text-3xl font-bold text-gray-900">{blog.title}</h1>
-        
-        <div className="mt-4 flex items-center text-sm text-gray-500">
-          <span>{blog.author}</span>
-          <span className="mx-2">•</span>
-          <span>{blog.date}</span>
-          <span className="mx-2">•</span>
-          <span>{blog.readTime}</span>
+        <div class="blog-post">
+            <h2>Blockchain Beyond Cryptocurrency</h2>
+            <p>Learn about the potential of blockchain technology beyond financial applications.</p>
+            <button onclick="showMore('blog2')">Read More</button>
         </div>
-
-        <div className="mt-8 prose prose-blue max-w-none">
-          <p>{blog.content}</p>
+        <div class="blog-post">
+            <h2>Quantum Computing Explained</h2>
+            <p>An introduction to quantum computing and its implications for technology and research.</p>
+            <button onclick="showMore('blog3')">Read More</button>
         </div>
-      </article>
-    </div>
-  );
+    </section>
 
-  return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Navigation */}
-      <nav className="bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16 items-center">
-            <div className="flex items-center space-x-4">
-              <a 
-                href="xyz.com" 
-                className="flex items-center text-gray-700 hover:text-blue-600"
-              >
-                <Home className="h-5 w-5" />
-                <span className="ml-2">Home</span>
-              </a>
-              <div className="flex items-center">
-                <Code className="h-6 w-6 text-blue-600" />
-                <span className="ml-2 text-xl font-bold text-gray-900">Codex Blog</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </nav>
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; CodeX Society. All Rights Reserved.</p>
+    </footer>
 
-      {/* Main Content */}
-      <main>
-        {selectedBlog ? (
-          <BlogPost blog={selectedBlog} />
-        ) : (
-          <BlogList />
-        )}
-      </main>
-
-      {/* Footer */}
-      <footer className="bg-white border-t mt-12 py-6">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-center text-gray-500">© 2024 Codex Blog. All rights reserved.</p>
-        </div>
-      </footer>
-    </div>
-  );
-};
-
-export default CodexBlog;
+    <script>
+        // Function to show a pop-up modal or an alert when clicking "Read More"
+        function showMore(blogId) {
+            alert("This is a preview of " + blogId + ". Full articles will be coming soon!");
+        }
+    </script>
+</body>
+</html>
