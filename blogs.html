@@ -1,164 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechWave - Futuristic Blog</title>
-    <style>
-        /* Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CodeX Society Blog</title>
+  <style>
+    /* Add your CSS styles here */
+    body {
+      font-family: 'Roboto Mono', monospace;
+      margin: 0;
+      padding: 0;
+      background-color: #0F0F0F;
+      color: #BDBDBD;
+    }
 
-        /* Body Styling */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #121212;
-            color: #e0e0e0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
 
-        /* Header */
-        .header {
-            text-align: center;
-            margin: 20px 0;
-            color: #03DAC5;
-            animation: pulse 2s infinite alternate;
-        }
-        .header h1 {
-            font-size: 2.5em;
-            letter-spacing: 2px;
-            font-weight: bold;
-        }
-        .header p {
-            color: #BB86FC;
-        }
+    .blog-post {
+      background-color: rgba(28, 28, 28, 0.8);
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      margin-bottom: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
 
-        /* Navigation Bar */
-        .navbar {
-            display: flex;
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-        .navbar a {
-            color: #03DAC5;
-            text-decoration: none;
-            font-size: 1.2em;
-            transition: color 0.3s ease;
-        }
-        .navbar a:hover {
-            color: #BB86FC;
-        }
+    .blog-post:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: linear-gradient(45deg, #1E88E5, #673AB7, #212121);
+      opacity: 0.3;
+      z-index: 0;
+    }
 
-        /* Blog Section */
-        .blog-section {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            width: 90%;
-            max-width: 800px;
-        }
-        .blog-post {
-            background-color: #1f1f1f;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .blog-post:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
-        }
-        .blog-post h2 {
-            color: #03DAC5;
-            margin-bottom: 10px;
-        }
-        .blog-post p {
-            color: #b0b0b0;
-            font-size: 0.9em;
-            line-height: 1.5em;
-        }
-        .blog-post button {
-            background-color: #BB86FC;
-            color: #121212;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1em;
-            transition: background-color 0.3s ease;
-        }
-        .blog-post button:hover {
-            background-color: #03DAC5;
-        }
+    .blog-post h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #FFFFFF;
+      position: relative;
+      z-index: 1;
+    }
 
-        /* Footer */
-        .footer {
-            margin-top: 40px;
-            color: #808080;
-            text-align: center;
-            font-size: 0.9em;
-        }
+    .blog-post p {
+      line-height: 1.6;
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 1;
+    }
 
-        /* Animation */
-        @keyframes pulse {
-            0% {
-                box-shadow: 0 0 10px #BB86FC, 0 0 20px #03DAC5;
-            }
-            50% {
-                box-shadow: 0 0 20px #BB86FC, 0 0 40px #03DAC5;
-            }
-            100% {
-                box-shadow: 0 0 10px #BB86FC, 0 0 20px #03DAC5;
-            }
-        }
-    </style>
+    .blog-post .meta {
+      font-size: 0.875rem;
+      color: #9E9E9E;
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .blog-post button {
+      background-color: #1E88E5;
+      color: #FFFFFF;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      font-size: 0.875rem;
+      cursor: pointer;
+      position: relative;
+      z-index: 1;
+    }
+
+    .blog-post button:hover {
+      background-color: #1565C0;
+    }
+
+    .home-button {
+      position: fixed;
+      top: 1rem;
+      left: 1rem;
+      background-color: #1E88E5;
+      color: #FFFFFF;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      font-size: 0.875rem;
+      cursor: pointer;
+      z-index: 2;
+    }
+
+    .home-button:hover {
+      background-color: #1565C0;
+    }
+
+    .background-image {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background-size: cover;
+      background-position: center;
+      animation: backgroundAnimation 30s ease infinite;
+      background-image: url('/api/placeholder/1920/1080?1');
+      filter: brightness(0.5) contrast(1.2);
+    }
+
+    @keyframes backgroundAnimation {
+      0% {
+        background-image: url('/api/placeholder/1920/1080?1');
+      }
+      25% {
+        background-image: url('/api/placeholder/1920/1080?2');
+      }
+      50% {
+        background-image: url('/api/placeholder/1920/1080?3');
+      }
+      75% {
+        background-image: url('/api/placeholder/1920/1080?4');
+      }
+      100% {
+        background-image: url('/api/placeholder/1920/1080?1');
+      }
+    }
+  </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <h1>TechWave</h1>
-        <p>Your Portal to Future Tech Insights</p>
-    </header>
+  <button class="home-button" onclick="window.location.href='/'">Home</button>
+  <div class="background-image"></div>
+  <div class="container">
+    <h1 style="color: #FFFFFF; font-size: 3rem; margin-bottom: 2rem;">CodeX Society Blog</h1>
+    <div class="blog-post">
+      <h2>Exploring the Future of Coding with CodeX</h2>
+      <div class="meta">Posted by Jane Doe on November 4, 2024</div>
+      <p>
+        In this blog post, we'll dive into the latest trends and technologies shaping the future of coding. From the rise of low-code/no-code platforms to the increased importance of data science and machine learning, the coding landscape is rapidly evolving. We'll explore how CodeX Society is staying ahead of the curve and preparing our members for the challenges and opportunities that lie ahead.
+      </p>
+      <button onclick="readMore()">Read More</button>
+    </div>
+    <div class="blog-post">
+      <h2>Building a Cutting-Edge Website with React and Tailwind</h2>
+      <div class="meta">Posted by John Smith on October 15, 2024</div>
+      <p>
+        Learn how we used the power of React and Tailwind CSS to create a modern, responsive website for the CodeX Society. We'll dive into the technical details and share our insights on how you can leverage these tools to build your own cutting-edge web applications.
+      </p>
+      <button onclick="readMore()">Read More</button>
+    </div>
+  </div>
 
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <a href="index.html">Home</a>
-    </nav>
-
-    <!-- Blog Section -->
-    <section class="blog-section" id="blogs">
-        <div class="blog-post">
-            <h2>The Rise of Artificial Intelligence</h2>
-            <p>Explore how AI is transforming industries and what the future holds for intelligent systems.</p>
-            <button onclick="showMore('blog1')">Read More</button>
-        </div>
-        <div class="blog-post">
-            <h2>Blockchain Beyond Cryptocurrency</h2>
-            <p>Learn about the potential of blockchain technology beyond financial applications.</p>
-            <button onclick="showMore('blog2')">Read More</button>
-        </div>
-        <div class="blog-post">
-            <h2>Quantum Computing Explained</h2>
-            <p>An introduction to quantum computing and its implications for technology and research.</p>
-            <button onclick="showMore('blog3')">Read More</button>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <p>&copy; CodeX Society. All Rights Reserved.</p>
-    </footer>
-
-    <script>
-        // Function to show a pop-up modal or an alert when clicking "Read More"
-        function showMore(blogId) {
-            alert("This is a preview of " + blogId + ". Full articles will be coming soon!");
-        }
-    </script>
+  <script>
+    function readMore() {
+      alert('You clicked the "Read More" button!');
+    }
+  </script>
 </body>
 </html>
