@@ -209,15 +209,21 @@
     <div class="particles" id="particles"></div>
 
     <!-- Enhanced Navigation -->
-    <nav class="cyber-nav fixed w-full z-50 top-0">
-        <div class="container mx-auto px-6 py-4">
-            <div class="flex justify-between items-center">
-                <div class="flex items-center space-x-4">
-                    <div class="h-12 w-12 cyber-card flex items-center justify-center">
-                        <i class="fas fa-code text-blue-400 text-2xl"></i>
-                    </div>
-                    <span class="text-2xl font-bold gradient-text">CodeX Society</span>
+  <nav class="cyber-nav fixed w-full z-50 top-0">
+    <div class="container mx-auto px-6 py-4">
+        <div class="flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <div class="h-12 w-12 cyber-card flex items-center justify-center">
+                    <i class="fas fa-code text-blue-400 text-2xl"></i>
                 </div>
+                <span class="text-2xl font-bold gradient-text">CodeX Society</span>
+            </div>
+            <div class="flex items-center space-x-8">
+                <button class="md:hidden text-white focus:outline-none" id="mobile-menu-button">
+                    <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path fill-rule="evenodd" d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z" />
+                    </svg>
+                </button>
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="#home" class="nav-link"><i class="fas fa-home mr-2"></i>Home</a>
                     <a href="#events" class="nav-link"><i class="fas fa-calendar-alt mr-2"></i>Events</a>
@@ -227,7 +233,27 @@
                 </div>
             </div>
         </div>
-    </nav>
+    </div>
+
+    <div class="bg-gray-800 shadow-lg hidden w-full" id="mobile-menu">
+        <div class="px-2 pt-2 pb-3 space-y-1">
+            <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-gray-900">Home</a>
+            <a href="#events" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Events</a>
+            <a href="#projects" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Projects</a>
+            <a href="#team-members" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Team</a>
+            <a href="blogs.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Blogs</a>
+        </div>
+    </div>
+</nav>
+
+<script>
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+</script>
 
     <!-- Hero Section -->
     <section id="home" class="min-h-screen flex items-center pt-20">
