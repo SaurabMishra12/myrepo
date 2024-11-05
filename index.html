@@ -460,57 +460,182 @@
 
 
 
-   <section id="team-members" class="py-24 bg-gradient-to-b from-gray-800 to-gray-700">
+   <section id="team-members" class="py-24 bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900">
     <div class="container mx-auto px-6">
-        <h2 class="text-4xl font-bold text-center mb-16 gradient-text text-white">Meet Our Team</h2>
+        <!-- Animated Section Title -->
+        <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4">
+                <span class="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent animate-gradient">
+                    Meet Our Team
+                </span>
+            </h2>
+            <p class="text-gray-400 max-w-2xl mx-auto">
+                Passionate innovators pushing the boundaries of AI and technology
+            </p>
+        </div>
 
+        <!-- Team Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Team Member Card -->
-            <div class="cyber-card overflow-hidden rounded-lg shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-2xl bg-gray-900">
-                <div class="relative group">
-                    <img src="path/to/member-photo1.jpg" alt="Saurab Mishra" class="w-full h-56 object-cover transition duration-300 group-hover:opacity-80">
+            <!-- Saurab Mishra Card -->
+            <div class="cyber-card group bg-gray-900/80 backdrop-blur-sm rounded-xl overflow-hidden shadow-lg transform transition-all duration-500 hover:scale-105 hover:shadow-[0_0_30px_rgba(59,130,246,0.3)] border border-gray-800">
+                <div class="relative">
+                    <!-- Profile Image -->
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="path/to/member-photo1.jpg" alt="Saurab Mishra" 
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40 to-transparent"></div>
+                    </div>
 
-                    <!-- Hover Overlay for Social Links -->
-                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition duration-300">
-                        <div class="flex space-x-4">
-                            <a href="https://www.linkedin.com/in/saurab-mishra-493a73178/" class="text-white text-xl hover:text-blue-500"><i class="fab fa-linkedin"></i></a>
-                            <a href="https://github.com/saurabmishra" class="text-white text-xl hover:text-gray-400"><i class="fab fa-github"></i></a>
+                    <!-- Hover Overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-gray-900/95 to-gray-900/50 opacity-0 group-hover:opacity-100 flex flex-col items-center justify-center transition-all duration-300 backdrop-blur-sm">
+                        <!-- Contact & Social Links -->
+                        <div class="space-y-4 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-300">
+                            <!-- Email -->
+                            <a href="mailto:saurabmishra@gmail.com" 
+                               class="flex items-center gap-2 text-gray-300 hover:text-blue-400 transition-colors duration-300">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                                </svg>
+                                <span>saurabmishra@gmail.com</span>
+                            </a>
+                            <!-- Social Links -->
+                            <div class="flex justify-center space-x-4">
+                                <a href="https://www.linkedin.com/in/saurab-mishra-493a73178/" 
+                                   class="bg-gray-800 p-3 rounded-full text-blue-400 hover:bg-blue-600 hover:text-white transition-all duration-300"
+                                   target="_blank" rel="noopener noreferrer">
+                                    <i class="fab fa-linkedin text-xl"></i>
+                                </a>
+                                <a href="https://github.com/saurabmishra" 
+                                   class="bg-gray-800 p-3 rounded-full text-gray-300 hover:bg-gray-700 hover:text-white transition-all duration-300"
+                                   target="_blank" rel="noopener noreferrer">
+                                    <i class="fab fa-github text-xl"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="p-6 text-center">
-                    <h3 class="text-2xl font-bold text-white mb-2">Saurab Mishra</h3>
-                    <p class="text-blue-400 font-semibold mb-1">Lead Developer</p>
-                    <p class="text-gray-300 mb-4">Data Science and AI enthusiast with expertise in LLMs, computer vision, and distributed systems.</p>
+                <!-- Content Section -->
+                <div class="p-6 space-y-4">
+                    <div class="text-center space-y-2">
+                        <h3 class="text-2xl font-bold text-white">Saurab Mishra</h3>
+                        <p class="text-blue-400 font-semibold">Lead Developer</p>
+                    </div>
+
+                    <!-- Skills & Interests -->
+                    <div class="space-y-3">
+                        <div class="flex flex-wrap gap-2 justify-center">
+                            <span class="px-3 py-1 text-xs font-medium bg-blue-900/30 text-blue-400 border border-blue-800 rounded-full">LLMs</span>
+                            <span class="px-3 py-1 text-xs font-medium bg-purple-900/30 text-purple-400 border border-purple-800 rounded-full">Computer Vision</span>
+                            <span class="px-3 py-1 text-xs font-medium bg-green-900/30 text-green-400 border border-green-800 rounded-full">Distributed Systems</span>
+                        </div>
+                        <p class="text-gray-400 text-sm text-center">Data Science and AI enthusiast with expertise in LLMs, computer vision, and distributed systems.</p>
+                    </div>
                 </div>
             </div>
 
-            <!-- Additional Team Members -->
-            <div class="cyber-card overflow-hidden rounded-lg shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-2xl bg-gray-900">
-                <div class="relative group">
-                    <img src="path/to/member-photo2.jpg" alt="Aryan Bhatia" class="w-full h-56 object-cover transition duration-300 group-hover:opacity-80">
+            <!-- Aryan Bhatia Card -->
+            <div class="cyber-card group bg-gray-900/80 backdrop-blur-sm rounded-xl overflow-hidden shadow-lg transform transition-all duration-500 hover:scale-105 hover:shadow-[0_0_30px_rgba(59,130,246,0.3)] border border-gray-800">
+                <div class="relative">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="path/to/member-photo2.jpg" alt="Aryan Bhatia" 
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40 to-transparent"></div>
+                    </div>
 
-                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition duration-300">
-                        <div class="flex space-x-4">
-                            <a href="https://linkedin.com/in/aaryaverma" class="text-white text-xl hover:text-blue-500"><i class="fab fa-linkedin"></i></a>
-                            <a href="https://github.com/aaryaverma" class="text-white text-xl hover:text-gray-400"><i class="fab fa-github"></i></a>
+                    <div class="absolute inset-0 bg-gradient-to-t from-gray-900/95 to-gray-900/50 opacity-0 group-hover:opacity-100 flex flex-col items-center justify-center transition-all duration-300 backdrop-blur-sm">
+                        <div class="space-y-4 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-300">
+                            <a href="mailto:aryanbhatia@gmail.com" 
+                               class="flex items-center gap-2 text-gray-300 hover:text-blue-400 transition-colors duration-300">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                                </svg>
+                                <span>aryanbhatia@gmail.com</span>
+                            </a>
+                            <div class="flex justify-center space-x-4">
+                                <a href="https://linkedin.com/in/aaryaverma" 
+                                   class="bg-gray-800 p-3 rounded-full text-blue-400 hover:bg-blue-600 hover:text-white transition-all duration-300"
+                                   target="_blank" rel="noopener noreferrer">
+                                    <i class="fab fa-linkedin text-xl"></i>
+                                </a>
+                                <a href="https://github.com/aaryaverma" 
+                                   class="bg-gray-800 p-3 rounded-full text-gray-300 hover:bg-gray-700 hover:text-white transition-all duration-300"
+                                   target="_blank" rel="noopener noreferrer">
+                                    <i class="fab fa-github text-xl"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="p-6 text-center">
-                    <h3 class="text-2xl font-bold text-white mb-2">Aryan Bhatia</h3>
-                    <p class="text-blue-400 font-semibold mb-1">physics Major</p>
-                    <p class="text-gray-300 mb-4">Just imagine the total number of atoms in the universe are smaller than what lies between 0 and 1. I am here to look for what's beyond.</p>
+                <div class="p-6 space-y-4">
+                    <div class="text-center space-y-2">
+                        <h3 class="text-2xl font-bold text-white">Aryan Bhatia</h3>
+                        <p class="text-blue-400 font-semibold">Physics Major</p>
+                    </div>
+
+                    <div class="space-y-3">
+                        <div class="flex flex-wrap gap-2 justify-center">
+                            <span class="px-3 py-1 text-xs font-medium bg-yellow-900/30 text-yellow-400 border border-yellow-800 rounded-full">Quantum Physics</span>
+                            <span class="px-3 py-1 text-xs font-medium bg-pink-900/30 text-pink-400 border border-pink-800 rounded-full">Mathematics</span>
+                            <span class="px-3 py-1 text-xs font-medium bg-purple-900/30 text-purple-400 border border-purple-800 rounded-full">AI Research</span>
+                        </div>
+                        <p class="text-gray-400 text-sm text-center">Exploring the intersection of quantum physics and artificial intelligence. Passionate about understanding the fundamental nature of reality.</p>
+                    </div>
                 </div>
             </div>
-
-            <!-- More team members can be added here -->
         </div>
     </div>
+
+    <style>
+    @keyframes gradientAnimation {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    .animate-gradient {
+        background-size: 200% auto;
+        animation: gradientAnimation 3s ease infinite;
+    }
+
+    .cyber-card {
+        position: relative;
+        isolation: isolate;
+    }
+
+    .cyber-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: inherit;
+        padding: 2px;
+        background: linear-gradient(45deg, #3b82f6, #8b5cf6, #ec4899);
+        -webkit-mask: 
+            linear-gradient(#fff 0 0) content-box, 
+            linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        z-index: -1;
+    }
+
+    .cyber-card:hover::before {
+        opacity: 1;
+    }
+    </style>
 </section>
 
+
+
+
+
+
+    
 
 
 
