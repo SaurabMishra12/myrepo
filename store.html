@@ -3,325 +3,337 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CodeX club Merchandise</title>
+    <title>Codex Club - Resource Library</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
+        :root {
+            --primary-color: #3b5998;
+            --secondary-color: #4CAF50;
+            --accent-color: #2196F3;
+            --background-light: #f4f7f6;
+            --background-dark: #2c3e50;
+            --text-primary: #333;
+            --text-secondary: #6c757d;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            background: #0a0a0a;
-            color: #fff;
-            min-height: 100vh;
-            position: relative;
-            overflow-x: hidden;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--background-light);
+            color: var(--text-primary);
+            line-height: 1.6;
         }
 
-        /* Dynamic Background */
-        .background {
+        .particle-background {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: 
-                radial-gradient(circle at 20% 20%, #2563eb22 0%, transparent 40%),
-                radial-gradient(circle at 80% 80%, #7c3aed22 0%, transparent 40%);
             z-index: -1;
-            animation: backgroundMove 20s ease-in-out infinite alternate;
+            background: linear-gradient(135deg, rgba(59,89,152,0.8), rgba(33,150,243,0.8));
+            background-size: cover;
+            background-attachment: fixed;
         }
 
-        @keyframes backgroundMove {
-            0% {
-                transform: scale(1) rotate(0deg);
-            }
-            100% {
-                transform: scale(1.1) rotate(3deg);
-            }
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255,255,255,0.9);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .logo i {
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-primary);
+            margin-left: 20px;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .library-container {
+            max-width: 1400px;
+            margin: 100px auto 50px;
+            padding: 30px;
+            background: rgba(255,255,255,0.95);
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
         }
 
         .header {
-            background: rgba(17, 17, 17, 0.95);
-            padding: 2rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 200%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            animation: shine 8s infinite;
-        }
-
-        @keyframes shine {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(100%); }
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
         }
 
         .header h1 {
             font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(to right, #2563eb, #7c3aed);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 20px rgba(37, 99, 235, 0.3);
+            color: var(--primary-color);
         }
 
-        .latest-tag {
-            display: inline-block;
-            background: linear-gradient(135deg, #2563eb, #7c3aed);
-            color: white;
-            padding: 0.4rem 1.2rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            margin-top: 0.5rem;
-            box-shadow: 0 0 20px rgba(37, 99, 235, 0.3);
+        .search-container {
+            display: flex;
+            align-items: center;
+            background: #f1f3f5;
+            border-radius: 30px;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
-        .merchandise {
-            max-width: 1400px;
-            margin: 3rem auto;
-            padding: 0 2rem;
-            position: relative;
+        .search-container input {
+            border: none;
+            background: transparent;
+            width: 250px;
+            font-size: 1rem;
+            margin-left: 10px;
         }
 
-        .merch-grid {
+        .resource-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
-            padding: 1rem;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
         }
 
-        .merch-item {
-            background: rgba(23, 23, 23, 0.95);
+        .resource-card {
+            background: white;
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-        }
-
-        .merch-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 40px rgba(37, 99, 235, 0.2);
-        }
-
-        .merch-image {
-            width: 100%;
-            height: 350px;
-            object-fit: cover;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            filter: brightness(0.9);
-            transition: filter 0.3s ease;
-        }
-
-        .merch-item:hover .merch-image {
-            filter: brightness(1);
-        }
-
-        .merch-info {
-            padding: 2rem;
-        }
-
-        .merch-name {
-            font-size: 1.3rem;
-            margin-bottom: 0.8rem;
-            color: #fff;
-            font-weight: 600;
-        }
-
-        .merch-price {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: #2563eb;
-            margin-bottom: 1.5rem;
-            text-shadow: 0 0 10px rgba(37, 99, 235, 0.3);
-        }
-
-        .new-label {
-            background: linear-gradient(135deg, #dc2626, #ef4444);
-            color: white;
-            padding: 0.3rem 1rem;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            margin-left: 0.8rem;
-            box-shadow: 0 0 10px rgba(220, 38, 38, 0.3);
-        }
-
-        .contact-btn {
-            background: linear-gradient(135deg, #2563eb, #7c3aed);
-            color: white;
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1rem;
             transition: all 0.3s ease;
-            width: 100%;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border: 1px solid rgba(0,0,0,0.05);
         }
 
-        .contact-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(37, 99, 235, 0.4);
+        .resource-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
         }
 
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
+        .resource-card-image {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .resource-card-image img {
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(8px);
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
+            object-fit: cover;
+            transition: transform 0.3s ease;
         }
 
-        .modal-content {
-            background: rgba(23, 23, 23, 0.95);
-            padding: 2.5rem;
-            border-radius: 15px;
-            max-width: 450px;
-            width: 90%;
-            position: relative;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        .resource-card:hover .resource-card-image img {
+            transform: scale(1.1);
         }
 
-        .close-modal {
+        .resource-card-content {
+            padding: 20px;
+        }
+
+        .resource-card-content h3 {
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .download-btn {
+            display: inline-block;
+            background: var(--secondary-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+        }
+
+        .download-btn:hover {
+            background: var(--accent-color);
+            transform: translateY(-5px);
+        }
+
+        @keyframes particleAnimation {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+            100% { transform: translateY(0) rotate(360deg); }
+        }
+
+        .particle {
             position: absolute;
-            top: 1rem;
-            right: 1rem;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #666;
-            transition: color 0.3s;
-        }
-
-        .close-modal:hover {
-            color: #fff;
-        }
-
-        .modal-title {
-            font-size: 1.4rem;
-            margin-bottom: 1.5rem;
-            color: #fff;
-            text-align: center;
-        }
-
-        .contact-info {
-            margin: 1.5rem 0;
-            color: #999;
-        }
-
-        .contact-info p {
-            margin: 0.8rem 0;
-            font-size: 1.1rem;
-        }
-
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 1.8rem;
-            }
-
-            .merch-grid {
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                gap: 1.5rem;
-            }
-
-            .merchandise {
-                padding: 0 1rem;
-                margin: 2rem auto;
-            }
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            animation: particleAnimation 10s infinite linear;
         }
     </style>
 </head>
 <body>
-    <div class="background"></div>
+    <div class="particle-background" id="particleContainer"></div>
     
-    <header class="header">
-        <h1>CodeXclub Collection</h1>
-    </header>
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fas fa-book-open"></i>
+            CodeX Club
+        </div>
+        <div class="nav-links">
+            <a href="index.html" id="homeBtn">
+                <i class="fas fa-home" style="margin-right: 8px;"></i>Home
+            </a>
+        </div>
+    </nav>
 
-    <main class="merchandise">
-        <div class="merch-grid" id="merch-container"></div>
-    </main>
-
-    <div class="modal" id="contactModal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModal()">&times;</span>
-            <h2 class="modal-title">Interested in this item?</h2>
-            <div class="contact-info">
-                <p>📧 store@codexclub.com</p>
-                <p>📱 1234</p>
-            
+    <div class="library-container">
+        <div class="header">
+            <h1>Resource Library</h1>
+            <div class="search-container">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search resources..." id="searchInput">
             </div>
-            <button class="contact-btn" onclick="closeModal()">Got it!</button>
+        </div>
+        <div id="resourceGrid" class="resource-grid">
+            <!-- Resources will be dynamically populated -->
         </div>
     </div>
 
     <script>
-        const merchandise = [
-            
-            {
-                name: "Developer T-Shirt",
-                price: 24.99,
-                image: "/api/placeholder/400/300",
-                isNew: true
+        // Dynamic Particle Background
+        function createParticles() {
+            const container = document.getElementById('particleContainer');
+            const particleCount = 50;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random positioning
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                
+                // Random sizing
+                const size = Math.random() * 20 + 5;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Random animation delay and duration
+                particle.style.animationDelay = `${Math.random() * 10}s`;
+                particle.style.animationDuration = `${Math.random() * 10 + 5}s`;
+
+                container.appendChild(particle);
             }
-          
-           
+        }
+
+        createParticles();
+
+        const resources = [
+            {
+                title: "Python Mastery",
+                description: "Advanced Python Programming Techniques",
+                thumbnail: "https://via.placeholder.com/400x250?text=Python+Mastery",
+                pdfUrl: "/python-mastery.pdf",
+                tags: ["programming", "python"]
+            },
+            {
+                title: "Web Development Roadmap",
+                description: "Complete Guide to Modern Web Development",
+                thumbnail: "https://via.placeholder.com/400x250?text=Web+Development",
+                pdfUrl: "/web-dev-roadmap.pdf",
+                tags: ["web", "frontend", "backend"]
+            },
+            {
+                title: "Machine Learning Essentials",
+                description: "Introduction to Machine Learning Concepts",
+                thumbnail: "https://via.placeholder.com/400x250?text=Machine+Learning",
+                pdfUrl: "/ml-essentials.pdf",
+                tags: ["ai", "machine learning"]
+            },
+            {
+                title: "Data Science Handbook",
+                description: "Comprehensive Data Science Guide",
+                thumbnail: "https://via.placeholder.com/400x250?text=Data+Science",
+                pdfUrl: "/data-science-handbook.pdf",
+                tags: ["data", "analytics"]
+            }
         ];
 
-        function displayMerchandise() {
-            const container = document.getElementById('merch-container');
-            container.innerHTML = merchandise.map(item => `
-                <div class="merch-item">
-                    <img src="${item.image}" alt="${item.name}" class="merch-image">
-                    <div class="merch-info">
-                        <h3 class="merch-name">
-                            ${item.name}
-                            ${item.isNew ? '<span class="new-label">New</span>' : ''}
-                        </h3>
-                        <p class="merch-price">$${item.price}</p>
-                        <button class="contact-btn" onclick="openModal()">Purchase Now</button>
+        function renderResources(filteredResources = resources) {
+            const resourceGrid = document.getElementById('resourceGrid');
+            resourceGrid.innerHTML = '';
+
+            filteredResources.forEach(resource => {
+                const card = document.createElement('div');
+                card.className = 'resource-card';
+                card.innerHTML = `
+                    <div class="resource-card-image">
+                        <img src="${resource.thumbnail}" alt="${resource.title}">
                     </div>
-                </div>
-            `).join('');
+                    <div class="resource-card-content">
+                        <h3>${resource.title}</h3>
+                        <p>${resource.description}</p>
+                        <a href="${resource.pdfUrl}" download class="download-btn">
+                            <i class="fas fa-download"></i> Download PDF
+                        </a>
+                    </div>
+                `;
+                resourceGrid.appendChild(card);
+            });
         }
 
-        function openModal() {
-            document.getElementById('contactModal').style.display = 'flex';
-        }
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const filteredResources = resources.filter(resource => 
+                resource.title.toLowerCase().includes(searchTerm) || 
+                resource.description.toLowerCase().includes(searchTerm) ||
+                resource.tags.some(tag => tag.toLowerCase().includes(searchTerm))
+            );
+            renderResources(filteredResources);
+        });
 
-        function closeModal() {
-            document.getElementById('contactModal').style.display = 'none';
-        }
+        // Home and About button event listeners
+        document.getElementById('homeBtn').addEventListener('click', () => {
+            renderResources();
+            document.getElementById('searchInput').value = '';
+        });
 
-        window.onclick = function(event) {
-            const modal = document.getElementById('contactModal');
-            if (event.target === modal) {
-                closeModal();
-            }
-        }
+        document.getElementById('aboutBtn').addEventListener('click', () => {
+            alert('Codex Club: Empowering learners through comprehensive resources and collaborative learning.');
+        });
 
-        displayMerchandise();
+        // Initial render
+        document.addEventListener('DOMContentLoaded', () => renderResources());
     </script>
 </body>
 </html>
