@@ -7,13 +7,13 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #3b5998;
-            --secondary-color: #4CAF50;
-            --accent-color: #2196F3;
-            --background-light: #f4f7f6;
-            --background-dark: #2c3e50;
-            --text-primary: #333;
-            --text-secondary: #6c757d;
+            --primary-color: #2563eb;
+            --accent-color: #0ea5e9;
+            --background: #f8fafc;
+            --card-bg: #ffffff;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --shadow: rgba(0, 0, 0, 0.1);
         }
 
         * {
@@ -23,317 +23,264 @@
         }
 
         body {
-            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--background-light);
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--background);
             color: var(--text-primary);
             line-height: 1.6;
-        }
-
-        .particle-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: linear-gradient(135deg, rgba(59,89,152,0.8), rgba(33,150,243,0.8));
-            background-size: cover;
-            background-attachment: fixed;
+            min-height: 100vh;
         }
 
         .navbar {
+            background: var(--card-bg);
+            box-shadow: 0 1px 3px var(--shadow);
+            padding: 1rem 5%;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            background: rgba(255,255,255,0.9);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             z-index: 1000;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 5%;
         }
 
         .logo {
             display: flex;
             align-items: center;
-            font-weight: bold;
+            gap: 0.5rem;
+            font-size: 1.25rem;
+            font-weight: 600;
             color: var(--primary-color);
-        }
-
-        .logo i {
-            margin-right: 10px;
-            font-size: 1.5rem;
         }
 
         .nav-links {
             display: flex;
-            align-items: center;
+            gap: 1.5rem;
         }
 
         .nav-links a {
             text-decoration: none;
             color: var(--text-primary);
-            margin-left: 20px;
-            transition: color 0.3s ease;
             display: flex;
             align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+            transition: color 0.2s;
         }
 
         .nav-links a:hover {
-            color: var(--accent-color);
-        }
-
-        .library-container {
-            max-width: 1400px;
-            margin: 100px auto 50px;
-            padding: 30px;
-            background: rgba(255,255,255,0.95);
-            border-radius: 15px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-        }
-
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-
-        .header h1 {
-            font-size: 2.5rem;
             color: var(--primary-color);
         }
 
-        .search-container {
-            display: flex;
-            align-items: center;
-            background: #f1f3f5;
-            border-radius: 30px;
-            padding: 10px 20px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        .main-container {
+            max-width: 1200px;
+            margin: 6rem auto 2rem;
+            padding: 0 1.5rem;
         }
 
-        .search-container input {
+        .header {
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background: var(--card-bg);
+            border: 1px solid #e2e8f0;
+            border-radius: 0.5rem;
+            padding: 0.5rem 1rem;
+            width: 300px;
+            transition: border-color 0.2s;
+        }
+
+        .search-bar:focus-within {
+            border-color: var(--primary-color);
+        }
+
+        .search-bar input {
             border: none;
-            background: transparent;
-            width: 250px;
-            font-size: 1rem;
-            margin-left: 10px;
+            outline: none;
+            background: none;
+            width: 100%;
+            margin-left: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--text-primary);
         }
 
         .resource-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            padding: 1rem 0;
         }
 
         .resource-card {
-            background: white;
-            border-radius: 15px;
+            background: var(--card-bg);
+            border-radius: 0.75rem;
             overflow: hidden;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            border: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 2px 4px var(--shadow);
+            transition: transform 0.2s, box-shadow 0.2s;
         }
 
         .resource-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            transform: translateY(-4px);
+            box-shadow: 0 4px 8px var(--shadow);
         }
 
-        .resource-card-image {
-            height: 250px;
+        .resource-image {
+            height: 200px;
             overflow: hidden;
-            position: relative;
+            background: #f1f5f9;
         }
 
-        .resource-card-image img {
+        .resource-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.3s ease;
         }
 
-        .resource-card:hover .resource-card-image img {
-            transform: scale(1.1);
+        .resource-content {
+            padding: 1.25rem;
         }
 
-        .resource-card-content {
-            padding: 20px;
+        .resource-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
         }
 
-        .resource-card-content h3 {
-            margin-bottom: 10px;
-            color: var(--primary-color);
+        .resource-description {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
         }
 
         .download-btn {
-            display: inline-block;
-            background: var(--secondary-color);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--primary-color);
             color: white;
-            padding: 10px 20px;
-            border-radius: 25px;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
             text-decoration: none;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            margin-top: 15px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: background-color 0.2s;
         }
 
         .download-btn:hover {
             background: var(--accent-color);
-            transform: translateY(-5px);
         }
 
-        @keyframes particleAnimation {
-            0% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
-            100% { transform: translateY(0) rotate(360deg); }
-        }
-
-        .particle {
-            position: absolute;
-            background: rgba(255,255,255,0.2);
-            border-radius: 50%;
-            animation: particleAnimation 10s infinite linear;
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .search-bar {
+                width: 100%;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="particle-background" id="particleContainer"></div>
-    
     <nav class="navbar">
         <div class="logo">
-            <i class="fas fa-book-open"></i>
-            CodeX Club
+            <i class="fas fa-book"></i>
+            Codex Club
         </div>
         <div class="nav-links">
-            <a href="index.html" id="homeBtn">
-                <i class="fas fa-home" style="margin-right: 8px;"></i>Home
-            </a>
+            <a href="index.html"><i class="fas fa-home"></i>Home</a>
+           
         </div>
     </nav>
 
-    <div class="library-container">
+    <div class="main-container">
         <div class="header">
             <h1>Resource Library</h1>
-            <div class="search-container">
+            <div class="search-bar">
                 <i class="fas fa-search"></i>
                 <input type="text" placeholder="Search resources..." id="searchInput">
             </div>
         </div>
-        <div id="resourceGrid" class="resource-grid">
-            <!-- Resources will be dynamically populated -->
+
+        <div class="resource-grid" id="resourceGrid">
+            <!-- Resources will be populated here -->
         </div>
     </div>
 
     <script>
-        // Dynamic Particle Background
-        function createParticles() {
-            const container = document.getElementById('particleContainer');
-            const particleCount = 50;
-
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.classList.add('particle');
-                
-                // Random positioning
-                particle.style.left = `${Math.random() * 100}%`;
-                particle.style.top = `${Math.random() * 100}%`;
-                
-                // Random sizing
-                const size = Math.random() * 20 + 5;
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
-                
-                // Random animation delay and duration
-                particle.style.animationDelay = `${Math.random() * 10}s`;
-                particle.style.animationDuration = `${Math.random() * 10 + 5}s`;
-
-                container.appendChild(particle);
-            }
-        }
-
-        createParticles();
-
         const resources = [
             {
-                title: "Python Mastery",
-                description: "Advanced Python Programming Techniques",
-                thumbnail: "https://via.placeholder.com/400x250?text=Python+Mastery",
-                pdfUrl: "/python-mastery.pdf",
-                tags: ["programming", "python"]
+                title: "Python Programming Guide",
+                description: "Comprehensive guide to Python fundamentals and advanced concepts",
+                image: "https://via.placeholder.com/400x300/f3f4f6/1e293b?text=Python",
+                downloadUrl: "#"
             },
             {
-                title: "Web Development Roadmap",
-                description: "Complete Guide to Modern Web Development",
-                thumbnail: "https://via.placeholder.com/400x250?text=Web+Development",
-                pdfUrl: "/web-dev-roadmap.pdf",
-                tags: ["web", "frontend", "backend"]
+                title: "Web Development Basics",
+                description: "Learn HTML, CSS, and JavaScript fundamentals",
+                image: "https://via.placeholder.com/400x300/f3f4f6/1e293b?text=Web+Dev",
+                downloadUrl: "#"
             },
             {
-                title: "Machine Learning Essentials",
-                description: "Introduction to Machine Learning Concepts",
-                thumbnail: "https://via.placeholder.com/400x250?text=Machine+Learning",
-                pdfUrl: "/ml-essentials.pdf",
-                tags: ["ai", "machine learning"]
+                title: "Data Structures",
+                description: "Essential data structures and algorithms",
+                image: "https://via.placeholder.com/400x300/f3f4f6/1e293b?text=DSA",
+                downloadUrl: "#"
             },
             {
-                title: "Data Science Handbook",
-                description: "Comprehensive Data Science Guide",
-                thumbnail: "https://via.placeholder.com/400x250?text=Data+Science",
-                pdfUrl: "/data-science-handbook.pdf",
-                tags: ["data", "analytics"]
+                title: "Machine Learning",
+                description: "Introduction to ML concepts and applications",
+                image: "https://via.placeholder.com/400x300/f3f4f6/1e293b?text=ML",
+                downloadUrl: "#"
             }
         ];
 
         function renderResources(filteredResources = resources) {
-            const resourceGrid = document.getElementById('resourceGrid');
-            resourceGrid.innerHTML = '';
-
-            filteredResources.forEach(resource => {
-                const card = document.createElement('div');
-                card.className = 'resource-card';
-                card.innerHTML = `
-                    <div class="resource-card-image">
-                        <img src="${resource.thumbnail}" alt="${resource.title}">
+            const grid = document.getElementById('resourceGrid');
+            grid.innerHTML = filteredResources.map(resource => `
+                <div class="resource-card">
+                    <div class="resource-image">
+                        <img src="${resource.image}" alt="${resource.title}">
                     </div>
-                    <div class="resource-card-content">
-                        <h3>${resource.title}</h3>
-                        <p>${resource.description}</p>
-                        <a href="${resource.pdfUrl}" download class="download-btn">
-                            <i class="fas fa-download"></i> Download PDF
+                    <div class="resource-content">
+                        <h3 class="resource-title">${resource.title}</h3>
+                        <p class="resource-description">${resource.description}</p>
+                        <a href="${resource.downloadUrl}" class="download-btn">
+                            <i class="fas fa-download"></i>
+                            Download PDF
                         </a>
                     </div>
-                `;
-                resourceGrid.appendChild(card);
-            });
+                </div>
+            `).join('');
         }
 
-        // Search functionality
-        document.getElementById('searchInput').addEventListener('input', function(e) {
+        document.getElementById('searchInput').addEventListener('input', (e) => {
             const searchTerm = e.target.value.toLowerCase();
-            const filteredResources = resources.filter(resource => 
-                resource.title.toLowerCase().includes(searchTerm) || 
-                resource.description.toLowerCase().includes(searchTerm) ||
-                resource.tags.some(tag => tag.toLowerCase().includes(searchTerm))
+            const filtered = resources.filter(resource => 
+                resource.title.toLowerCase().includes(searchTerm) ||
+                resource.description.toLowerCase().includes(searchTerm)
             );
-            renderResources(filteredResources);
-        });
-
-        // Home and About button event listeners
-        document.getElementById('homeBtn').addEventListener('click', () => {
-            renderResources();
-            document.getElementById('searchInput').value = '';
-        });
-
-        document.getElementById('aboutBtn').addEventListener('click', () => {
-            alert('Codex Club: Empowering learners through comprehensive resources and collaborative learning.');
+            renderResources(filtered);
         });
 
         // Initial render
-        document.addEventListener('DOMContentLoaded', () => renderResources());
+        renderResources();
     </script>
 </body>
 </html>
