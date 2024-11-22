@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeXclub Merchandise</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: #0a0a0a;
+            color: #fff;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Dynamic Background */
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 20%, #2563eb22 0%, transparent 40%),
+                radial-gradient(circle at 80% 80%, #7c3aed22 0%, transparent 40%);
+            z-index: -1;
+            animation: backgroundMove 20s ease-in-out infinite alternate;
+        }
+
+        @keyframes backgroundMove {
+            0% {
+                transform: scale(1) rotate(0deg);
+            }
+            100% {
+                transform: scale(1.1) rotate(3deg);
+            }
+        }
+
+        .header {
+            background: rgba(17, 17, 17, 0.95);
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: shine 8s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(100%); }
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(to right, #2563eb, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(37, 99, 235, 0.3);
+        }
+
+        .latest-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            color: white;
+            padding: 0.4rem 1.2rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            box-shadow: 0 0 20px rgba(37, 99, 235, 0.3);
+        }
+
+        .merchandise {
+            max-width: 1400px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+            position: relative;
+        }
+
+        .merch-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            padding: 1rem;
+        }
+
+        .merch-item {
+            background: rgba(23, 23, 23, 0.95);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .merch-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 40px rgba(37, 99, 235, 0.2);
+        }
+
+        .merch-image {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            filter: brightness(0.9);
+            transition: filter 0.3s ease;
+        }
+
+        .merch-item:hover .merch-image {
+            filter: brightness(1);
+        }
+
+        .merch-info {
+            padding: 2rem;
+        }
+
+        .merch-name {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .merch-price {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #2563eb;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 10px rgba(37, 99, 235, 0.3);
+        }
+
+        .new-label {
+            background: linear-gradient(135deg, #dc2626, #ef4444);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-left: 0.8rem;
+            box-shadow: 0 0 10px rgba(220, 38, 38, 0.3);
+        }
+
+        .contact-btn {
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            width: 100%;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(37, 99, 235, 0.4);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: rgba(23, 23, 23, 0.95);
+            padding: 2.5rem;
+            border-radius: 15px;
+            max-width: 450px;
+            width: 90%;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+            transition: color 0.3s;
+        }
+
+        .close-modal:hover {
+            color: #fff;
+        }
+
+        .modal-title {
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            color: #fff;
+            text-align: center;
+        }
+
+        .contact-info {
+            margin: 1.5rem 0;
+            color: #999;
+        }
+
+        .contact-info p {
+            margin: 0.8rem 0;
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .merch-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 1.5rem;
+            }
+
+            .merchandise {
+                padding: 0 1rem;
+                margin: 2rem auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background"></div>
+    
+    <header class="header">
+        <h1>CodeXclub Collection</h1>
+        <span class="latest-tag">Premium Series</span>
+    </header>
+
+    <main class="merchandise">
+        <div class="merch-grid" id="merch-container"></div>
+    </main>
+
+    <div class="modal" id="contactModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h2 class="modal-title">Interested in this item?</h2>
+            <div class="contact-info">
+                <p>📧 store@codexclub.com</p>
+                <p>📱 (555) 123-4567</p>
+                <p>⏱️ Response within 24 hours</p>
+            </div>
+            <button class="contact-btn" onclick="closeModal()">Got it!</button>
+        </div>
+    </div>
+
+    <script>
+        const merchandise = [
+            {
+                name: "Limited Edition Hackathon Hoodie",
+                price: 49.99,
+                image: "/api/placeholder/400/300",
+                isNew: true
+            },
+            {
+                name: "Developer Mode T-Shirt",
+                price: 24.99,
+                image: "/api/placeholder/400/300",
+                isNew: true
+            },
+            {
+                name: "CodeXclub Cap",
+                price: 19.99,
+                image: "/api/placeholder/400/300",
+                isNew: false
+            },
+            {
+                name: "Tech Enthusiast Backpack",
+                price: 39.99,
+                image: "/api/placeholder/400/300",
+                isNew: true
+            }
+        ];
+
+        function displayMerchandise() {
+            const container = document.getElementById('merch-container');
+            container.innerHTML = merchandise.map(item => `
+                <div class="merch-item">
+                    <img src="${item.image}" alt="${item.name}" class="merch-image">
+                    <div class="merch-info">
+                        <h3 class="merch-name">
+                            ${item.name}
+                            ${item.isNew ? '<span class="new-label">New</span>' : ''}
+                        </h3>
+                        <p class="merch-price">$${item.price}</p>
+                        <button class="contact-btn" onclick="openModal()">Purchase Now</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function openModal() {
+            document.getElementById('contactModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('contactModal').style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('contactModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        displayMerchandise();
+    </script>
+</body>
+</html>
