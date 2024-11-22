@@ -88,18 +88,19 @@
         }
 
         .nav-links a {
-            text-decoration: none;
-            color: var(--text-primary);
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            gap: 0.5rem;
-            font-weight: 500;
-            transition: color 0.3s;
-            padding: 0.5rem 1rem;
-            border-radius: 0.5rem;
-            background: transparent;
-        }
+    text-decoration: none;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+    transition: color 0.3s;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    background: transparent;
+    margin-left: auto;  /* Aligns the link to the right */
+}
+
 
         .nav-links a:hover {
             background: rgba(255, 255, 255, 0.1);
@@ -266,9 +267,6 @@
     
     <nav class="navbar">
         <div class="nav-content">
-            <a href="#" class="logo">
-                Codex Club
-            </a>
             <div class="nav-links">
                 <a href="index.html"><i class="fas fa-home"></i>            Home</a>
                 
